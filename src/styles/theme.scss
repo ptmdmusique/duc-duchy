@@ -1,0 +1,24 @@
+@import "styles/common/util-common";
+@import "./color-palette.module";
+
+@function get-color-value($color) {
+  @return #{unquote(str-replace(str-replace($color, "rgb(", ""), ")", ""))};
+}
+
+@mixin extract-color-map($map) {
+  @each $key, $value in $map {
+    #{$key}: #{get-color-value($value)};
+  }
+}
+
+.theme-light {
+  @include extract-color-map($theme-light);
+}
+
+.theme-dark {
+  @include extract-color-map($theme-dark);
+}
+
+@function get-color-value($color) {
+  @return #{unquote(str-replace(str-replace($color, "rgb(", ""), ")", ""))};
+}
