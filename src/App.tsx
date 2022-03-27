@@ -1,12 +1,18 @@
+import { pathInfoMap, pathMap } from "data/routes/routes";
 import { useStoreRehydrated } from "easy-peasy";
 import { useManageI18n, useManageTheme } from "hooks";
+import { Suspense } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "styles/main.scss";
 import "styles/theme.scss";
 import { initializeIconList } from "utils/icons/init";
 import "./App.scss";
-import logo from "./logo.svg";
 
 initializeIconList();
+
+const LoadingView = () => {
+  return <div>Loading...</div>;
+};
 
 function App() {
   const isHydrated = useStoreRehydrated();
@@ -15,26 +21,19 @@ function App() {
   useManageI18n();
 
   if (!isHydrated) {
-    return <div>Loading...</div>;
+    return <LoadingView />;
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className="text-skin-success">
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<LoadingView />}>
+      <Routes>
+        {pathInfoMap.map(({ path, Component }) => (
+          <Route key={path} path={pathMap[path]} element={<Component />} />
+        ))}
+
+        <Route path="*" element={<Navigate to={pathMap.home} replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 

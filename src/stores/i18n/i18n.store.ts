@@ -1,4 +1,4 @@
-import { SupportLanguage, supportLanguageList } from "data/theme/i18n/i18n";
+import { SupportLanguage, supportLanguageList } from "data/i18n/i18n";
 import { action, Action } from "easy-peasy";
 import { customI18N } from "utils/i18n/init";
 

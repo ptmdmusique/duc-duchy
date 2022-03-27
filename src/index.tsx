@@ -1,6 +1,7 @@
 import { StoreProvider } from "easy-peasy";
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import { store } from "stores";
 import App from "./App";
 import "./index.css";
@@ -9,7 +10,9 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById("root"),
