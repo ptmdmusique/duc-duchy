@@ -61,6 +61,7 @@
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "@types/react-router-dom": "^5.3.3",
+    "@types/three": "^0.139.0",
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
     "sass": "^1.49.9",
